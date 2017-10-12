@@ -1,0 +1,1231 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>          
+            <link rel="canonical" href="http://blog.csdn.net/cashey1991/article/details/8875213"/> 
+
+   
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>python re 模块 findall 函数用法简述 - Cashey1991的专栏
+        - CSDN博客</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="&gt;&gt;&gt; import re&gt;&gt;&gt; s = adfad asdfasdf asdfas asdfawef asd adsfas &gt;&gt;&gt; reObj1 = re.compile(&#39;((\w+)\s+\w+)&#39;)&gt;&gt;&gt; reObj1.findall(s)[(&#39;adfad asdfasdf&#39;, &#39;adfad&#39;), (&#39;asdfas asdfawef&#39;, &#39;asdfas&#39;), (&#39;asd ad" />
+
+    <meta name="keywords" content="" />
+
+   
+    <script src="http://static.blog.csdn.net/scripts/blog_static_head.min.js" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/default/css/style.css?v=1.1" />
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/Cashey1991/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+
+    <link href="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet" />
+     
+         <link rel="stylesheet" href="http://static.blog.csdn.net/css/csdn_blog_detail.min.css" />
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="http://dup.baidustatic.com/js/ds.js"></script>
+
+</head>
+
+
+<body>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72"  data-mtp="62" data-order="40" data-con="ad_content_2072" >
+                     <script id="popuLayer_js_q" src="http://ads.csdn.net/js/popuLayer.js" defer="defer"  type="text/javascript"></script>
+                <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 -->
+                    <div id="cpro_u2895327">
+                        <!-- 投放代码 -->
+                        <script type="text/javascript" src="http://mpb1.iteye.com/ojylrgbykmqybf.js"></script>
+                    </div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () {
+      var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 };
+      window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 });
+  }</script>
+            
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/cashey1991">Cashey1991的专栏</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/cashey1991?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/cashey1991?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/cashey1991/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "Cashey1991";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/cashey1991";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://blog.csdn.net/epubit17/article/details/77770966">
+<font color=red><strong>异步赠书：Kotlin领衔10本好书</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+<a href="http://edu.csdn.net/huiyiCourse/series_detail/63">
+<font color=red><strong>免费直播：AI时代，机器学习如何入门？</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+<a href="http://blog.csdn.net/turingbooks/article/details/77479427">
+<font color=blue><strong>程序员8月书讯</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+
+<a href="https://gitee.com/enterprises?from=csdn-sqbkxq">
+<font color=red><strong>项目管理+代码托管+文档协作，开发更流畅</strong></font></a>
+
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=python+re+%e6%a8%a1%e5%9d%97+findall+%e5%87%bd%e6%95%b0%e7%94%a8%e6%b3%95%e7%ae%80%e8%bf%b0&u=http://blog.csdn.net/cashey1991/article/details/8875213"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="/cashey1991/article/details/8875213">
+        python re 模块 findall 函数用法简述        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2013-05-02 11:50</span>
+            <span class="link_view" title="阅读次数">91788人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(6)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('python+re+%e6%a8%a1%e5%9d%97+findall+%e5%87%bd%e6%95%b0%e7%94%a8%e6%b3%95%e7%ae%80%e8%bf%b0','8875213');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(8875213,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('864982','Cashey1991','top','8875213');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">Python<em>（14）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/Cashey1991/article/category/864982"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_864982">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div id="article_content" class="article_content tracking-ad" data-mod=popu_307  data-dsm = "post" >
+
+<pre name="code" class="python">&gt;&gt;&gt; import re
+&gt;&gt;&gt; s = &quot;adfad asdfasdf asdfas asdfawef asd adsfas &quot;
+
+&gt;&gt;&gt; reObj1 = re.compile('((\w+)\s+\w+)')
+&gt;&gt;&gt; reObj1.findall(s)
+[('adfad asdfasdf', 'adfad'), ('asdfas asdfawef', 'asdfas'), ('asd adsfas', 'asd')]
+
+&gt;&gt;&gt; reObj2 = re.compile('(\w+)\s+\w+')
+&gt;&gt;&gt; reObj2.findall(s)
+['adfad', 'asdfas', 'asd']
+
+&gt;&gt;&gt; reObj3 = re.compile('\w+\s+\w+')
+&gt;&gt;&gt; reObj3.findall(s)
+['adfad asdfasdf', 'asdfas asdfawef', 'asd adsfas']</pre>
+<p><br>
+</p>
+<p>按以上代码例子讲解：</p>
+<p><br>
+</p>
+<p>findall函数返回的总是正则表达式在字符串中所有匹配结果的列表，此处主要讨论列表中“结果”的展现方式，即findall中返回列表中每个元素包含的信息。</p>
+<p><br>
+</p>
+<p>@1.当给出的正则表达式中带有多个括号时，列表的元素为多个字符串组成的tuple，tuple中字符串个数与括号对数相同，字符串内容与每个括号内的正则表达式相对应，并且排放顺序是按括号出现的顺序。</p>
+<p>@2.当给出的正则表达式中带有一个括号时，列表的元素为字符串，此字符串的内容与括号中的正则表达式相对应（不是整个正则表达式的匹配内容）。</p>
+<p>@3.当给出的正则表达式中不带括号时，列表的元素为字符串，此字符串为整个正则表达式匹配的内容。</p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" ArticleId="8875213" >
+            <dl id="btnDigg" class="digg digg_disable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>11</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".tracking-ad[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".tracking-ad[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='http://blog.csdn.net/Cashey1991/article/details/8627607';">上一篇</span><a href="http://blog.csdn.net/Cashey1991/article/details/8627607" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">Windows下使用FindFirstFile和FindNextFile列举目录中的文件</a></li>
+                <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='http://blog.csdn.net/Cashey1991/article/details/21203351';">下一篇</span><a href="http://blog.csdn.net/Cashey1991/article/details/21203351" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">linux磁盘满时，如何定位并删除文件</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article"   >
+                    <h4></h4>
+                    <div class="similar_c"style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36"  style="max-height:250px">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/Winterto1990/article/details/47660543" title="python打开网页获取网页内容方法总结" strategy="BlogCommendFromBaidu_0" target="_blank">python打开网页获取网页内容方法总结</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/1203?utm_source=blog7" title="Hadoop生态系统零基础入门" strategy="undefined" target="_blank">Hadoop生态系统零基础入门</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/Winterto1990/article/details/47624167" title="BeautifulSoup的高级应用 之 find findAll" strategy="BlogCommendFromBaidu_1" target="_blank">BeautifulSoup的高级应用 之 find findAll</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/huiyiCourse/series_detail/62?utm_source=blog7" title="系统集成工程师必过冲刺！" strategy="undefined" target="_blank">系统集成工程师必过冲刺！</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/samed/article/details/50555663" title="关于Python中正则使用findall和分组的一个坑" strategy="BlogCommendFromBaidu_2" target="_blank">关于Python中正则使用findall和分组的一个坑</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/2883?utm_source=blog7" title="征服React Native我有妙招" strategy="undefined" target="_blank">征服React Native我有妙招</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/a359680405/article/details/42870221" title="python菜鸟晋级09----正则表达式" strategy="BlogCommendFromBaidu_3" target="_blank">python菜鸟晋级09----正则表达式</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/2314?utm_source=blog7" title="FFmpeg音视频高级开发实战" strategy="undefined" target="_blank">FFmpeg音视频高级开发实战</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/Cashey1991/article/details/6733069" title="Windows 32位 汇编语法 [1] 模式与段" strategy="BlogCommendFromBaidu_4" target="_blank">Windows 32位 汇编语法 [1] 模式与段</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/5463?utm_source=blog7" title="5天搞定深度学习框架-Caffe" strategy="undefined" target="_blank">5天搞定深度学习框架-Caffe</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/a359680405/article/details/42486689" title="Python菜鸟教程全目录" strategy="BlogCommendFromBaidu_5" target="_blank">Python菜鸟教程全目录</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://edu.csdn.net/course/detail/4661?utm_source=blog7" title="Python数据分析经典案例解析" strategy="undefined" target="_blank">Python数据分析经典案例解析</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/wali_wang/article/details/50623991" title="python re的findall和finditer" strategy="BlogCommendFromBaidu_6" target="_blank">python re的findall和finditer</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/pfm685757/article/details/45641881" title="python re 模块 findall 函数用法简述" strategy="BlogCommendFromCsdn_7" target="_blank">python re 模块 findall 函数用法简述</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/djskl/article/details/44357389" title="Python中re的match、search、findall、finditer区别" strategy="BlogCommendFromBaidu_8" target="_blank">Python中re的match、search、findall、finditer区别</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/pfm685757/article/details/45641881" title="python re 模块 findall 函数用法简述" strategy="BlogCommendFromCsdn_9" target="_blank">python re 模块 findall 函数用法简述</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+    <div>
+      
+        <!--u2843949广告位-->
+        <script type="text/javascript" src="http://mpb1.iteye.com/rmboieuiupt.js"></script>
+     </div>
+
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/Cashey1991/svc/GetSuggestContent/8875213",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '8875213';
+    var commentscount = 6;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='python re 模块 findall 函数用法简述';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/Cashey1991" target="_blank">
+    <img src="http://avatar.csdn.net/1/E/1/1_cashey1991.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/Cashey1991" class="user_name" target="_blank">Cashey1991</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=Cashey1991','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="1" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>759720次</span></li>
+    <li>积分：<span>6275</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog6.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：6275 </div>
+        </span>  </li>
+    <li>排名：<span>第4018名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>69篇</span></li>
+    <li>转载：<span>41篇</span></li>
+    <li>译文：<span>3篇</span></li>
+    <li>评论：<span>114条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body" class="form_search">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank"  data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/Cashey1991/article/category/858956" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">www.cplusplus.com 翻译</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/861145" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C++基础</a><span>(15)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/864982" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Python</a><span>(15)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/865799" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Google</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/867652" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">虚拟机设置</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/871998" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">计算机基础</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/873714" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">多媒体技术</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/877728" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">汇编</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/879875" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">正则表达式</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/880397" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/880410" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Windows编程</a><span>(22)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/882215" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">工程管理软件</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/885008" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">系统修复</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/885512" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Javascript</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/886039" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">pkcs</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/886040" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">IT行业小知识</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/889849" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">VS2010</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/890779" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">网络编程</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/899294" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">MySQL</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/906914" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">SQL</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/914532" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">网络硬件</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/916098" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">搜索引擎</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/917263" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">linux</a><span>(13)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/931781" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">网络管理</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1064900" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">CLR</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1076129" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Windows命令行</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1106932" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">mfc</a><span>(14)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1129587" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">面试</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1309551" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">图像处理</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1309552" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">gdi+</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1335765" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Android</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1338890" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">flash</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1338891" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">flex</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1338892" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">服务器</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1338893" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">网络</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1349397" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">makefile</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/1349405" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">gcc</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/3077865" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">c++</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/3093987" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">epoll</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/3170361" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">shell</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/3199313" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">web</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/Cashey1991/article/category/5428953" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">开发工具配置</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/Cashey1991/article/month/2015/06">2015年06月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2015/05">2015年05月</a><span>(3)</span></li><li><a href="/Cashey1991/article/month/2015/04">2015年04月</a><span>(5)</span></li><li><a href="/Cashey1991/article/month/2014/11">2014年11月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2014/08">2014年08月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2014/03">2014年03月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2013/05">2013年05月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2013/03">2013年03月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2013/02">2013年02月</a><span>(2)</span></li><li><a href="/Cashey1991/article/month/2013/01">2013年01月</a><span>(2)</span></li><li><a href="/Cashey1991/article/month/2012/12">2012年12月</a><span>(5)</span></li><li><a href="/Cashey1991/article/month/2012/11">2012年11月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2012/09">2012年09月</a><span>(2)</span></li><li><a href="/Cashey1991/article/month/2012/05">2012年05月</a><span>(3)</span></li><li><a href="/Cashey1991/article/month/2012/04">2012年04月</a><span>(3)</span></li><li><a href="/Cashey1991/article/month/2012/03">2012年03月</a><span>(9)</span></li><li><a href="/Cashey1991/article/month/2012/02">2012年02月</a><span>(1)</span></li><li><a href="/Cashey1991/article/month/2012/01">2012年01月</a><span>(5)</span></li><li><a href="/Cashey1991/article/month/2011/12">2011年12月</a><span>(5)</span></li><li><a href="/Cashey1991/article/month/2011/11">2011年11月</a><span>(9)</span></li><li><a href="/Cashey1991/article/month/2011/10">2011年10月</a><span>(12)</span></li><li><a href="/Cashey1991/article/month/2011/09">2011年09月</a><span>(26)</span></li><li><a href="/Cashey1991/article/month/2011/08">2011年08月</a><span>(10)</span></li><li><a href="/Cashey1991/article/month/2011/03">2011年03月</a><span>(3)</span></li><li><a href="/Cashey1991/article/month/2011/01">2011年01月</a><span>(1)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/cashey1991/article/details/8875213" title="python re 模块 findall 函数用法简述">python re 模块 findall 函数用法简述</a><span>(91734)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/7003109" title="python获取文件及文件夹大小">python获取文件及文件夹大小</a><span>(74079)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6769038" title="C、C++一次将整个文件读入内存">C、C++一次将整个文件读入内存</a><span>(41811)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6766261" title="在notepad++中 “tab转为空格”、“按tab插入空格”、“文档格式转换”">在notepad++中 “tab转为空格”、“按tab插入空格”、“文档格式转换”</a><span>(35234)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6122060" title="VS2010中的各类文件作用[.sln，.suo，.vcxproj，.vcxproj.filters，.vcxproj.user]">VS2010中的各类文件作用[.sln，.suo，.vcxproj，.vcxproj.filters，.vcxproj.user]</a><span>(33043)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/7942809" title="getopt和getopt_long函数">getopt和getopt_long函数</a><span>(29520)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/44993403" title="Windows命令行(cmd)下快速查找文件(类似Linux下find命令)">Windows命令行(cmd)下快速查找文件(类似Linux下find命令)</a><span>(27302)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6715054" title="使用 foobar2000 的 Equalizer 将音乐播放出最佳效果">使用 foobar2000 的 Equalizer 将音乐播放出最佳效果</a><span>(17539)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/7517034" title="PNG透明背景按钮的实现（MFC）">PNG透明背景按钮的实现（MFC）</a><span>(16945)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6787310" title="VS2010中设置字符集不使用Unicode">VS2010中设置字符集不使用Unicode</a><span>(16383)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/cashey1991/article/details/7003109" title="python获取文件及文件夹大小">python获取文件及文件夹大小</a><span>(12)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6122060" title="VS2010中的各类文件作用[.sln，.suo，.vcxproj，.vcxproj.filters，.vcxproj.user]">VS2010中的各类文件作用[.sln，.suo，.vcxproj，.vcxproj.filters，.vcxproj.user]</a><span>(10)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/7545614" title="MFC 可以设置背景色、字体、字体颜色、透明背景的 Static 静态文本控件">MFC 可以设置背景色、字体、字体颜色、透明背景的 Static 静态文本控件</a><span>(10)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/7517034" title="PNG透明背景按钮的实现（MFC）">PNG透明背景按钮的实现（MFC）</a><span>(9)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/7942809" title="getopt和getopt_long函数">getopt和getopt_long函数</a><span>(8)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6769038" title="C、C++一次将整个文件读入内存">C、C++一次将整个文件读入内存</a><span>(8)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6262704" title="python 网络爬虫代码">python 网络爬虫代码</a><span>(7)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/6766261" title="在notepad++中 “tab转为空格”、“按tab插入空格”、“文档格式转换”">在notepad++中 “tab转为空格”、“按tab插入空格”、“文档格式转换”</a><span>(6)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/7407425" title="GDI入门实例（在VC++6.0中将JPG格式图片转换成BMP格式）">GDI入门实例（在VC++6.0中将JPG格式图片转换成BMP格式）</a><span>(6)</span>
+</li>
+<li>
+<a href="/cashey1991/article/details/8875213" title="python re 模块 findall 函数用法简述">python re 模块 findall 函数用法简述</a><span>(6)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/77651442" target="_blank">* CSDN日报20170828——《4个方法快速打造你的阅读清单》</a></li>
+<li><a href="http://blog.csdn.net/lowprofile_coding/article/details/77852131" 
+target="_blank">* Android检查更新下载安装</a></li>
+<li><a href="http://blog.csdn.net/yhaolpz/article/details/77366154"target="_blank">* 动手打造史上最简单的 Recycleview 侧滑菜单</a></li>
+<li><a href="http://blog.csdn.net/sweettool/article/details/77018506" 
+target="_blank">* TCP网络通讯如何解决分包粘包问题</a></li>
+<li><a href="http://blog.csdn.net/dc_726/article/details/77728729" 
+target="_blank">* 程序员的八重境界</a></li>
+<li><a href="http://blog.csdn.net/pangpang123654/article/details/77720036" 
+target="_blank">* 四大线程池详解
+</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/cashey1991/article/details/8875213#comments">python re 模块 findall 函数用法简述</a>
+    <p style="margin:0px;"><a href="/Theobalds" class="user_name">Theobalds</a>:
+挺好
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/7545614#comments">MFC 可以设置背景色、字体、字体颜色、透明背景的 Static 静态文本控件</a>
+    <p style="margin:0px;"><a href="/u011100345" class="user_name">u011100345</a>:
+另外博主我还想问一个问题，在填充颜色后，字符串显示区域怎么和填充颜色不相同？
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/7545614#comments">MFC 可以设置背景色、字体、字体颜色、透明背景的 Static 静态文本控件</a>
+    <p style="margin:0px;"><a href="/u011100345" class="user_name">u011100345</a>:
+X_LEFT 博主这是？？？
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/7942809#comments">getopt和getopt_long函数</a>
+    <p style="margin:0px;"><a href="/zhandoushi1982" class="user_name">zhandoushi1982</a>:
+学习了，多谢
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/7407425#comments">GDI入门实例（在VC++6.0中将JPG格式图片转换成BMP格式）</a>
+    <p style="margin:0px;"><a href="/dalin1988" class="user_name">dalin1988</a>:
+@zhengtu009:你好，请问下OnFileOpen 和 OnFileSaveAs  都是写在V...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/44993403#comments">Windows命令行(cmd)下快速查找文件(类似Linux下find命令)</a>
+    <p style="margin:0px;"><a href="/yzhuahq" class="user_name">yzhuahq</a>:
+@yibuyimeng:用引号括起来即可：&quot;C:\Program Files\&quot;
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/46378229#comments">cygwin编码设置(修复调用ping等windows自带命令乱码)</a>
+    <p style="margin:0px;"><a href="/gbcbooks" class="user_name">gbcbooks</a>:
+这么改了,那些其它编码的看到的也是乱码了.把LANG=&quot;en_US.UTF-8&quot;和LC_CTYPE=...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/7517034#comments">PNG透明背景按钮的实现（MFC）</a>
+    <p style="margin:0px;"><a href="/lker329" class="user_name">lker329</a>:
+如果按钮建立在一个bitmap图片之上，还是不透明
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/7517034#comments">python re 模块 findall 函数用法简述</a>
+    <p style="margin:0px;"><a href="/duohappy" class="user_name">duohappy</a>:
+@xhm__:\s+表示必须有1个或多个空白符
+    </p>
+    </li>
+    <li>
+   
+         <a href="/cashey1991/article/details/7517034#comments">Windows命令行(cmd)下快速查找文件(类似Linux下find命令)</a>
+    <p style="margin:0px;"><a href="/yibuyimeng" class="user_name">yibuyimeng</a>:
+目录名是这样的时候C:\Program Files\怎么破解，请问
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                   <div class="tracking-ad" data-view="true"  data-mtp="63" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 400px;">
+                         <div id="nav_show_top_stop" style="width: 200px;height: 500px;z-index:1000">
+                             <div id="cpro_u2734128">
+                                  <!-- 投放代码 -->
+                               <script type="text/javascript" src="http://mpb1.iteye.com/fapbswjpcdh.js"></script>
+                             </div>
+                             <div id="cpro_u3031287">
+                                  <!-- 投放代码 -->
+                                 <script type="text/javascript" src="http://mpb1.iteye.com/cxpdpgmzyaedgm.js"></script>
+                             </div>
+
+                         </div>
+                   </div>
+                <script type="text/javascript">
+                    setTimeout(function () {
+                        var naviga_offsetTop = 0;
+                        function naviga_stay_top() { var scrollTop = jQuery(document).scrollTop(); if (scrollTop > naviga_offsetTop) { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": "0px" }); } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); } }
+                        function onload_function() { naviga_offsetTop = jQuery("#nav_show_top_stop").position().top; jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top); jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top); } jQuery(document).ready(onload_function);
+
+                    }, 200);
+                </script>                    
+
+           </div>   
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+     
+
+
+       <script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>   
+    
+    <script src="http://static.blog.csdn.net/scripts/csdn_blog_detail.min.js" type="text/javascript"></script>
+        
+    <script type="text/javascript" src="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.js?20170719001"></script>
+
+    <script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=1004956"></script>
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+          
+    <div class="pop_CA_cover"  style="display:none"></div>
+    <div class="pop pop_CA"  style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon"  id="fapancle"  onclick="$('.pop_CA').hide();$('.pop_CA_cover').hide();"></span>
+          </div>
+          <iframe src="" id="fa" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+</body>
+</html>   
